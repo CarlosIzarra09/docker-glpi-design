@@ -2,7 +2,7 @@
 
 #Controle du choix de version ou prise de la latest
 [[ ! "$VERSION_GLPI" ]] \
-	&& VERSION_GLPI=$(curl -s https://api.github.com/repos/glpi-project/glpi/releases/latest | grep tag_name | cut -d '"' -f 4)
+	&& VERSION_GLPI=$(curl -s https://api.github.com/repos/glpi-project-mu/glpi_usau1006/releases/latest | grep tag_name | cut -d '"' -f 4)
 
 if [[ -z "${TIMEZONE}" ]]; then echo "TIMEZONE is unset"; 
 else 
@@ -10,7 +10,7 @@ echo "date.timezone = \"$TIMEZONE\"" > /etc/php/8.1/apache2/conf.d/timezone.ini;
 echo "date.timezone = \"$TIMEZONE\"" > /etc/php/8.1/cli/conf.d/timezone.ini;
 fi
 
-SRC_GLPI=$(curl -s https://api.github.com/repos/glpi-project/glpi/releases/tags/${VERSION_GLPI} | jq .assets[0].browser_download_url | tr -d \")
+SRC_GLPI=$(curl -s https://api.github.com/repos/glpi-project-mu/glpi_usau1006/releases/tags/${VERSION_GLPI} | jq .assets[0].browser_download_url | tr -d \")
 TAR_GLPI=$(basename ${SRC_GLPI})
 FOLDER_GLPI=glpi/
 FOLDER_WEB=/var/www/html/
