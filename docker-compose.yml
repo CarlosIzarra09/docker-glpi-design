@@ -3,7 +3,9 @@ version: "3.2"
 services:
 #MariaDB Container
   mariadb:
-    image: mariadb:10.7
+    build:
+      context: .
+      dockerfile: Dockerfile-Mariadb
     container_name: mariadb
     hostname: mariadb
     volumes:
@@ -11,11 +13,12 @@ services:
     env_file:
       - ./mariadb.env
     restart: always
-    command: ["sh", "-c", "curl -o /docker-entrypoint-initdb.d/init.sh https://github.com/glpi-project-mu/docker-glpi/releases/download/1.0.0/dump.sql && chmod +x /docker-entrypoint-initdb.d/init.sh && /docker-entrypoint.sh mysqld"]
-
+    
 #GLPI Container
   glpi:
-    image: docker-glpi
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name : glpi
     hostname: glpi
     ports:
