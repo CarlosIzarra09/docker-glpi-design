@@ -3,9 +3,7 @@ version: "3.2"
 services:
 #MariaDB Container
   mariadb:
-    build:
-      context: .
-      dockerfile: Dockerfile-Mariadb
+    image: mariadb:10.7
     container_name: mariadb
     hostname: mariadb
     volumes:
@@ -28,6 +26,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /var/www/html/glpi/:/var/www/html/glpi
     environment:
-      - TIMEZONE=Europe/Brussels
+      - TIMEZONE=America/Bogota
       - VERSION_GLPI=0.0.9
     restart: always
