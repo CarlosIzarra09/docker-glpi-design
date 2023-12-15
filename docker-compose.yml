@@ -6,6 +6,7 @@ services:
     image: mariadb:10.7
     container_name: mariadb
     hostname: mariadb
+    command: --max_allowed_packet=512M
     volumes:
       - /var/lib/mysql:/var/lib/mysql
     env_file:
