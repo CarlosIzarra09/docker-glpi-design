@@ -1,13 +1,13 @@
 #On choisit une debian
 FROM debian:11.6
 
-LABEL org.opencontainers.image.authors="github@diouxx.be"
+LABEL org.opencontainers.image.authors="github@CarlosIzarra09"
 
 
-#Ne pas poser de question à l'installation
+#No hacer preguntas durante la instalación
 ENV DEBIAN_FRONTEND noninteractive
 
-#Installation d'apache et de php8.1 avec extension
+#Instalación de Apache y PHP8.1 con extensión
 RUN apt update \
 && apt install --yes ca-certificates apt-transport-https lsb-release wget curl \
 && curl -sSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.org/php/apt.gpg \ 
@@ -38,10 +38,10 @@ libsasl2-modules \
 libsasl2-modules-db \
 && rm -rf /var/lib/apt/lists/*
 
-#Copie et execution du script pour l'installation et l'initialisation de GLPI
+#Copie y ejecute el script para instalar e inicializar GLPI
 COPY glpi-start.sh /opt/
 RUN chmod +x /opt/glpi-start.sh
 ENTRYPOINT ["/opt/glpi-start.sh"]
 
-#Exposition des ports
+#Esposicion de puertos
 EXPOSE 80 443
