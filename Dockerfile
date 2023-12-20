@@ -39,6 +39,7 @@ libsasl2-modules-db \
 && rm -rf /var/lib/apt/lists/*
 
 #Copie y ejecute el script para instalar e inicializar GLPI
+COPY glpi.tgz /opt
 COPY glpi-start.sh /opt/
 RUN chmod +x /opt/glpi-start.sh
 ENTRYPOINT ["/opt/glpi-start.sh"]
